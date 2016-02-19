@@ -38,8 +38,8 @@ public class PublishServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-		System.out.println("param1:" + param1);
-		System.out.println("param2:" + param2);
+//		System.out.println("param1:" + param1);
+//		System.out.println("param2:" + param2);
 
 		Gson gson = new Gson();
 		Publish publish = new Publish();
@@ -50,7 +50,7 @@ public class PublishServlet extends HttpServlet {
 			int a = MyBATISSqlSessionFactory.getSession()
 					.getMapper(PublishMapper.class).insert(publish);
 			MyBATISSqlSessionFactory.getSession().commit();
-			System.out.println("publish.getId()=" + publish.getId());
+			//System.out.println("publish.getId()=" + publish.getId());
 			result = publish.getId() + "";
 		} catch (Exception e) {
 			e.printStackTrace();
