@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leetai.mapping.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.leetai.modle.Version" >
+    <result column="version_name" property="versionName" jdbcType="VARCHAR" />
+    <result column="version_code" property="versionCode" jdbcType="VARCHAR" />
+    <result column="i_flag" property="iFlag" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+    version_name,version_code,i_flag,description
+  </sql>
+  <insert id="insert" parameterType="com.leetai.modle.Version" >
+    insert into sys_version (version_name, version_code, i_flag, 
+      description)
+    values (#{versionName,jdbcType=VARCHAR}, #{versionCode,jdbcType=VARCHAR}, #{iFlag,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leetai.modle.Version" >
+    insert into sys_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="versionName != null" >
+        version_name,
+      </if>
+      <if test="versionCode != null" >
+        version_code,
+      </if>
+      <if test="iFlag != null" >
+        i_flag,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="versionName != null" >
+        #{versionName,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null" >
+        #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="iFlag != null" >
+        #{iFlag,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <select id="select"  resultMap="BaseResultMap">
+  SELECT    <include refid="Base_Column_List" />  FROM sys_version  
+  WHERE i_flag = 1
+ </select>
+ 
+</mapper>
