@@ -38,20 +38,23 @@ public class PublishListServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-//		System.out.println("param1:" + param1);
-//		System.out.println("param2:" + param2);
+		// System.out.println("param1:" + param1);
+		// System.out.println("param2:" + param2);
 
 		Gson gson = new Gson();
-	 
+
 		// System.out.println("publish.getAddress()" + publish.getAddress());
 		try {
 
 			list = MyBATISSqlSessionFactory.getSession()
-					.getMapper(PublishMapper.class).findAll(0);
+					.getMapper(PublishMapper.class)
+					.findAll(Integer.parseInt(param1));
 			result = gson.toJson(list);
-//			for (int i = 0; i < list.size(); i++) {
-//				System.out.println(list.get(i).getId() + "");
-//			}
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println("list.get(i).getTitle()="
+						+ list.get(i).getTitle());
+			}
+			MyBATISSqlSessionFactory.getSession().clearCache();
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "fail";

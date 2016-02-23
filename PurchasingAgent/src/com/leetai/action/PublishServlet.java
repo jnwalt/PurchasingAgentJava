@@ -38,20 +38,39 @@ public class PublishServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-//		System.out.println("param1:" + param1);
-//		System.out.println("param2:" + param2);
+		 System.out.println("param1:" + param1);
+		 System.out.println("param2:" + param2);
 
-		Gson gson = new Gson();
-		Publish publish = new Publish();
-		publish = gson.fromJson(param2, Publish.class);
-		//System.out.println("publish.getAddress()" + publish.getAddress());
+		// System.out.println("publish.getAddress()" + publish.getAddress());
+		 Gson gson = new Gson();
+			Publish publish = new Publish();
+
 		try {
+			if (param1.equals("add")) {
+				
+				publish = gson.fromJson(param2, Publish.class);
+				int a = MyBATISSqlSessionFactory.getSession()
+						.getMapper(PublishMapper.class).insert(publish);
+				MyBATISSqlSessionFactory.getSession().commit();
+				// System.out.println("publish.getId()=" + publish.getId());
+				result = publish.getId() + "";
+			} else if (param1.equals("delete")) {
+				int a = MyBATISSqlSessionFactory.getSession()
+						.getMapper(PublishMapper.class).deleteByPrimaryKey(Integer.parseInt(param2));
+				MyBATISSqlSessionFactory.getSession().commit();
+				result = a+"";
+			} else if (param1.equals("modify")) {
+				publish = gson.fromJson(param2, Publish.class);
+				System.out.println("publish.getTitle()="+publish.getTitle());	
+				int a = MyBATISSqlSessionFactory.getSession()
+						.getMapper(PublishMapper.class).updateByPrimaryKey(publish);
+				MyBATISSqlSessionFactory.getSession().commit();
+				result = a+"";
+			} else {
+				System.out.println("PublishServlet参数错误无法解析;");
+				return;
+			}
 
-			int a = MyBATISSqlSessionFactory.getSession()
-					.getMapper(PublishMapper.class).insert(publish);
-			MyBATISSqlSessionFactory.getSession().commit();
-			//System.out.println("publish.getId()=" + publish.getId());
-			result = publish.getId() + "";
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "fail";

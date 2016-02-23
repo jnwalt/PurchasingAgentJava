@@ -23,12 +23,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
-    <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from p_publish
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
+   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from p_publish
@@ -163,4 +158,12 @@
       public_flag = #{publicFlag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_publish
+    where user_id = #{userId,jdbcType=INTEGER}  order by id desc 
+  </select>
 </mapper>
