@@ -13,9 +13,10 @@ public interface PublishMapper {
 
 	Publish selectByPrimaryKey(Integer id);
 
-	List<Publish> findAll(Integer id);
-
 	int updateByPrimaryKeySelective(Publish record);
 
 	int updateByPrimaryKey(Publish record);
+	
+	/////////////////////
+	List<Publish> findAll(Integer id);
 }
