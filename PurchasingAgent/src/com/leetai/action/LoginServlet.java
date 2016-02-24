@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.leetai.mapping.UserMapper;
-import com.leetai.mapping.VersionMapper;
 import com.leetai.modle.User;
-import com.leetai.modle.Version;
 import com.leetai.tools.MyBATISSqlSessionFactory;
 
 public class LoginServlet extends HttpServlet {

@@ -2,8 +2,6 @@ package com.leetai.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.leetai.mapping.PublishMapper;
-import com.leetai.mapping.UserMapper;
 import com.leetai.modle.Publish;
-import com.leetai.modle.User;
 import com.leetai.tools.MyBATISSqlSessionFactory;
 
 public class PublishServlet extends HttpServlet {
