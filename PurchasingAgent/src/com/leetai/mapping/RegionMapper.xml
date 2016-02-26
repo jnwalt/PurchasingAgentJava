@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leetai.mapping.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.leetai.modle.Region" >
+    <id column="sys_region_ID" property="sysRegionId" jdbcType="DOUBLE" />
+    <result column="sys_region_CODE" property="sysRegionCode" jdbcType="VARCHAR" />
+    <result column="sys_region_NAME" property="sysRegionName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DOUBLE" />
+    <result column="sys_region_LEVEL" property="sysRegionLevel" jdbcType="DOUBLE" />
+    <result column="sys_region_ORDER" property="sysRegionOrder" jdbcType="DOUBLE" />
+    <result column="sys_region_NAME_EN" property="sysRegionNameEn" jdbcType="VARCHAR" />
+    <result column="sys_region_SHORTNAME_EN" property="sysRegionShortnameEn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sys_region_ID, sys_region_CODE, sys_region_NAME, PARENT_ID, sys_region_LEVEL, sys_region_ORDER, 
+    sys_region_NAME_EN, sys_region_SHORTNAME_EN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Double" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_region
+    where sys_region_ID = #{sysRegionId,jdbcType=DOUBLE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Double" >
+    delete from sys_region
+    where sys_region_ID = #{sysRegionId,jdbcType=DOUBLE}
+  </delete>
+  <insert id="insert" parameterType="com.leetai.modle.Region" >
+    insert into sys_region (sys_region_ID, sys_region_CODE, sys_region_NAME, 
+      PARENT_ID, sys_region_LEVEL, sys_region_ORDER, 
+      sys_region_NAME_EN, sys_region_SHORTNAME_EN)
+    values (#{sysRegionId,jdbcType=DOUBLE}, #{sysRegionCode,jdbcType=VARCHAR}, #{sysRegionName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=DOUBLE}, #{sysRegionLevel,jdbcType=DOUBLE}, #{sysRegionOrder,jdbcType=DOUBLE}, 
+      #{sysRegionNameEn,jdbcType=VARCHAR}, #{sysRegionShortnameEn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leetai.modle.Region" >
+    insert into sys_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sysRegionId != null" >
+        sys_region_ID,
+      </if>
+      <if test="sysRegionCode != null" >
+        sys_region_CODE,
+      </if>
+      <if test="sysRegionName != null" >
+        sys_region_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="sysRegionLevel != null" >
+        sys_region_LEVEL,
+      </if>
+      <if test="sysRegionOrder != null" >
+        sys_region_ORDER,
+      </if>
+      <if test="sysRegionNameEn != null" >
+        sys_region_NAME_EN,
+      </if>
+      <if test="sysRegionShortnameEn != null" >
+        sys_region_SHORTNAME_EN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sysRegionId != null" >
+        #{sysRegionId,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionCode != null" >
+        #{sysRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRegionName != null" >
+        #{sysRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionLevel != null" >
+        #{sysRegionLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionOrder != null" >
+        #{sysRegionOrder,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionNameEn != null" >
+        #{sysRegionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRegionShortnameEn != null" >
+        #{sysRegionShortnameEn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Region" >
+    update sys_region
+    <set >
+      <if test="sysRegionCode != null" >
+        sys_region_CODE = #{sysRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRegionName != null" >
+        sys_region_NAME = #{sysRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionLevel != null" >
+        sys_region_LEVEL = #{sysRegionLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionOrder != null" >
+        sys_region_ORDER = #{sysRegionOrder,jdbcType=DOUBLE},
+      </if>
+      <if test="sysRegionNameEn != null" >
+        sys_region_NAME_EN = #{sysRegionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRegionShortnameEn != null" >
+        sys_region_SHORTNAME_EN = #{sysRegionShortnameEn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sys_region_ID = #{sysRegionId,jdbcType=DOUBLE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leetai.modle.Region" >
+    update sys_region
+    set sys_region_CODE = #{sysRegionCode,jdbcType=VARCHAR},
+      sys_region_NAME = #{sysRegionName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=DOUBLE},
+      sys_region_LEVEL = #{sysRegionLevel,jdbcType=DOUBLE},
+      sys_region_ORDER = #{sysRegionOrder,jdbcType=DOUBLE},
+      sys_region_NAME_EN = #{sysRegionNameEn,jdbcType=VARCHAR},
+      sys_region_SHORTNAME_EN = #{sysRegionShortnameEn,jdbcType=VARCHAR}
+    where sys_region_ID = #{sysRegionId,jdbcType=DOUBLE}
+  </update>
+  
+  
+   <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Double" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_region
+    where PARENT_ID = #{parentId,jdbcType=DOUBLE}  
+  </select>
+</mapper>
