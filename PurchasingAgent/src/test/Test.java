@@ -1,5 +1,6 @@
 package test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,15 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		DBUtils db = new DBUtils();
-		List<User> list = new ArrayList<User>();
-		
-		list = db.query("select * from sys_user", User.class);
-		System.out.println(list.get(0).getPassword());
+		try{
+		String path = "D:\\temp1\\aa\\12\\"+123;
+		File file = new File(path);
+		if  (!file.exists()  && !file.isDirectory())      
+		{       
+			file.mkdir();
+		}}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }
