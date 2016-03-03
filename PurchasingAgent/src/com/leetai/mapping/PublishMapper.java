@@ -22,6 +22,6 @@ public interface PublishMapper {
      
 	
 	/////////////////////
-	List<Publish> findAllByUserId(Integer pId);
-	List<Publish> findAll();
+ 	List<Publish> findAllByUserId(Integer pUesrId);
+ 	List<Publish> findAll();
 }

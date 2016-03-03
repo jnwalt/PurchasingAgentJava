@@ -1,130 +1,132 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leetai.mapping.BidMapper" >
-  <resultMap id="BaseResultMap" type="com.leetai.modle.Bid" >
-    <id column="s_id" property="sId" jdbcType="INTEGER" />
-    <result column="s_price" property="sPrice" jdbcType="DOUBLE" />
-  <!--    <result column="s_user_id" property="sUserId" jdbcType="INTEGER" />-->
-    <result column="s_address" property="sAddress" jdbcType="VARCHAR" />
-   <!--  <result column="p_id" property="pId" jdbcType="INTEGER" />-->
-    <result column="s_add_time" property="sAddTime" jdbcType="DATE" />
-    
+<mapper namespace="com.leetai.mapping.BidMapper">
+	<resultMap id="BaseResultMap" type="com.leetai.modle.Bid">
+		<id column="s_id" property="sId" jdbcType="INTEGER" />
+		<result column="s_price" property="sPrice" jdbcType="DOUBLE" />
+		<!-- <result column="s_user_id" property="sUserId" jdbcType="INTEGER" /> -->
+		<result column="s_address" property="sAddress" jdbcType="VARCHAR" />
+		<!-- <result column="p_id" property="pId" jdbcType="INTEGER" /> -->
+		<result column="s_add_time" property="sAddTime" jdbcType="DATE" />
+
 		<association property="sUser" column="s_user_id"
 			javaType="com.leetai.modle.User" select="com.leetai.mapping.UserMapper.selectByPrimaryKey">
 		</association>
 		<association property="publish" column="p_id"
 			javaType="com.leetai.modle.Publish" select="com.leetai.mapping.PublishMapper.selectByPrimaryKey">
 		</association>
-		
-  </resultMap>
-  <sql id="Base_Column_List" >
-    s_id, s_price, s_user_id, s_address, p_id, s_add_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select t.*,d.*,a.*
-   <!--  <include refid="Base_Column_List" /> -->
-    from s_bid t left join sys_user d on t.s_user_id = d.user_id
-    left join p_publish a on t.p_id = a.p_id
-    where t.s_id = #{sId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from s_bid
-    where s_id = #{sId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.leetai.modle.Bid" >
-  	<selectKey resultType="java.lang.Integer" order="AFTER"
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		s_id, s_price, s_user_id, s_address, p_id, s_add_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select t.*,d.*,a.*
+		<!-- <include refid="Base_Column_List" /> -->
+		from s_bid t left join sys_user d on t.s_user_id = d.user_id
+		left join p_publish a on t.p_id = a.p_id
+		where t.s_id = #{sId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from s_bid
+		where s_id = #{sId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.leetai.modle.Bid">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
 			keyProperty="sId">
-			SELECT LAST_INSERT_ID() 
+			SELECT LAST_INSERT_ID()
 		</selectKey>
-		
-    insert into s_bid (s_id, s_price, s_user_id, 
-      s_address, p_id, s_add_time
-      )
-    values (#{sId,jdbcType=INTEGER}, #{sPrice,jdbcType=DOUBLE}, #{sUserId,jdbcType=INTEGER}, 
-      #{sAddress,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{sAddTime,jdbcType=DATE}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.leetai.modle.Bid" >
-    insert into s_bid
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sId != null" >
-        s_id,
-      </if>
-      <if test="sPrice != null" >
-        s_price,
-      </if>
-      <if test="sUserId != null" >
-        s_user_id,
-      </if>
-      <if test="sAddress != null" >
-        s_address,
-      </if>
-      <if test="pId != null" >
-        p_id,
-      </if>
-      <if test="sAddTime != null" >
-        s_add_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="sId != null" >
-        #{sId,jdbcType=INTEGER},
-      </if>
-      <if test="sPrice != null" >
-        #{sPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="sUserId != null" >
-        #{sUserId,jdbcType=INTEGER},
-      </if>
-      <if test="sAddress != null" >
-        #{sAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="pId != null" >
-        #{pId,jdbcType=INTEGER},
-      </if>
-      <if test="sAddTime != null" >
-        #{sAddTime,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Bid" >
-    update s_bid
-    <set >
-      <if test="sPrice != null" >
-        s_price = #{sPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="sUserId != null" >
-        s_user_id = #{sUserId,jdbcType=INTEGER},
-      </if>
-      <if test="sAddress != null" >
-        s_address = #{sAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="pId != null" >
-        p_id = #{pId,jdbcType=INTEGER},
-      </if>
-      <if test="sAddTime != null" >
-        s_add_time = #{sAddTime,jdbcType=DATE},
-      </if>
-    </set>
-    where s_id = #{sId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.leetai.modle.Bid" >
-    update s_bid
-    set s_price = #{sPrice,jdbcType=DOUBLE},
-      s_user_id = #{sUserId,jdbcType=INTEGER},
-      s_address = #{sAddress,jdbcType=VARCHAR},
-      p_id = #{pId,jdbcType=INTEGER},
-      s_add_time = #{sAddTime,jdbcType=DATE}
-    where s_id = #{sId,jdbcType=INTEGER}
-  </update>
-  
-  
-  
-  
-  <select id="findByPId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from s_bid
-    where p_id = #{pId,jdbcType=INTEGER}  order by s_id desc 
-  </select>
+
+		insert into s_bid (s_id, s_price, s_user_id,
+		s_address, p_id, s_add_time
+		)
+		values (#{sId,jdbcType=INTEGER}, #{sPrice,jdbcType=DOUBLE},
+		#{sUserId,jdbcType=INTEGER},
+		#{sAddress,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{sAddTime,jdbcType=DATE}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.leetai.modle.Bid">
+		insert into s_bid
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sId != null">
+				s_id,
+			</if>
+			<if test="sPrice != null">
+				s_price,
+			</if>
+			<if test="sUserId != null">
+				s_user_id,
+			</if>
+			<if test="sAddress != null">
+				s_address,
+			</if>
+			<if test="pId != null">
+				p_id,
+			</if>
+			<if test="sAddTime != null">
+				s_add_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sId != null">
+				#{sId,jdbcType=INTEGER},
+			</if>
+			<if test="sPrice != null">
+				#{sPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="sUserId != null">
+				#{sUserId,jdbcType=INTEGER},
+			</if>
+			<if test="sAddress != null">
+				#{sAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				#{pId,jdbcType=INTEGER},
+			</if>
+			<if test="sAddTime != null">
+				#{sAddTime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Bid">
+		update s_bid
+		<set>
+			<if test="sPrice != null">
+				s_price = #{sPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="sUserId != null">
+				s_user_id = #{sUserId,jdbcType=INTEGER},
+			</if>
+			<if test="sAddress != null">
+				s_address = #{sAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				p_id = #{pId,jdbcType=INTEGER},
+			</if>
+			<if test="sAddTime != null">
+				s_add_time = #{sAddTime,jdbcType=DATE},
+			</if>
+		</set>
+		where s_id = #{sId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.leetai.modle.Bid">
+		update s_bid
+		set s_price = #{sPrice,jdbcType=DOUBLE},
+		s_user_id = #{sUserId,jdbcType=INTEGER},
+		s_address = #{sAddress,jdbcType=VARCHAR},
+		p_id = #{pId,jdbcType=INTEGER},
+		s_add_time = #{sAddTime,jdbcType=DATE}
+		where s_id = #{sId,jdbcType=INTEGER}
+	</update>
+
+
+
+
+	<select id="findByPId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from s_bid
+		where p_id = #{pId,jdbcType=INTEGER} order by s_id desc
+	</select>
 </mapper>

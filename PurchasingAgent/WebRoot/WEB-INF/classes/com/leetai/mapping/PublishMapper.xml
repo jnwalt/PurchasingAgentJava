@@ -13,7 +13,7 @@
     <result column="p_add_time" property="pAddTime" jdbcType="DATE" />
     <result column="p_flag" property="pFlag" jdbcType="INTEGER" />
  
-    <association property="pUser" column="p_user_id"
+    <association property="pUser" column="p_user_id"  
 			javaType="com.leetai.modle.User" select="com.leetai.mapping.UserMapper.selectByPrimaryKey">
 		</association>
   </resultMap>
@@ -32,13 +32,19 @@
     where p_id = #{pId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.leetai.modle.Publish" >
+  
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="pId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+  
     insert into p_publish (p_id, p_title, p_description, 
       p_type, p_price, p_img, 
       p_user_id, p_address, p_add_time, 
       p_flag)
     values (#{pId,jdbcType=INTEGER}, #{pTitle,jdbcType=VARCHAR}, #{pDescription,jdbcType=VARCHAR}, 
       #{pType,jdbcType=VARCHAR}, #{pPrice,jdbcType=DOUBLE}, #{pImg,jdbcType=VARCHAR}, 
-      #{pUserId,jdbcType=INTEGER}, #{pAddress,jdbcType=VARCHAR}, #{pAddTime,jdbcType=DATE}, 
+      #{pUser.userId,jdbcType=INTEGER}, #{pAddress,jdbcType=VARCHAR}, #{pAddTime,jdbcType=DATE}, 
       #{pFlag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.leetai.modle.Publish" >
@@ -62,7 +68,7 @@
       <if test="pImg != null" >
         p_img,
       </if>
-      <if test="pUserId != null" >
+      <if test="pUser.userId != null" >
         p_user_id,
       </if>
       <if test="pAddress != null" >
@@ -94,8 +100,8 @@
       <if test="pImg != null" >
         #{pImg,jdbcType=VARCHAR},
       </if>
-      <if test="pUserId != null" >
-        #{pUserId,jdbcType=INTEGER},
+      <if test="pUser.userId != null" >
+        #{pUser.userId,jdbcType=INTEGER},
       </if>
       <if test="pAddress != null" >
         #{pAddress,jdbcType=VARCHAR},
@@ -126,8 +132,8 @@
       <if test="pImg != null" >
         p_img = #{pImg,jdbcType=VARCHAR},
       </if>
-      <if test="pUserId != null" >
-        p_user_id = #{pUserId,jdbcType=INTEGER},
+      <if test="pUser != null" >
+        p_user_id = #{pUser.userId,jdbcType=INTEGER},
       </if>
       <if test="pAddress != null" >
         p_address = #{pAddress,jdbcType=VARCHAR},
@@ -142,13 +148,15 @@
     where p_id = #{pId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.leetai.modle.Publish" >
+  
+   
     update p_publish
     set p_title = #{pTitle,jdbcType=VARCHAR},
       p_description = #{pDescription,jdbcType=VARCHAR},
       p_type = #{pType,jdbcType=VARCHAR},
       p_price = #{pPrice,jdbcType=DOUBLE},
       p_img = #{pImg,jdbcType=VARCHAR},
-      p_user_id = #{pUserId,jdbcType=INTEGER},
+      p_user_id = #{pUser.userId,jdbcType=INTEGER},
       p_address = #{pAddress,jdbcType=VARCHAR},
       p_add_time = #{pAddTime,jdbcType=DATE},
       p_flag = #{pFlag,jdbcType=INTEGER}
@@ -157,14 +165,16 @@
   
   
    <select id="findAllByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from p_publish
-    where p_user_id = #{pUserId,jdbcType=INTEGER}  order by p_id desc 
+  
+    select t.*,d.* 
+    from p_publish t left join sys_user d on t.p_user_id = d.user_id
+  where p_user_id = #{pUesrId,jdbcType=INTEGER}  order by p_id desc 
+  
+    
   </select>
     <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from p_publish  order by p_id desc 
-  </select>
+  </select> 
 </mapper>

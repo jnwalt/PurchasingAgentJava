@@ -93,13 +93,14 @@ public class PublishServlet extends HttpServlet {
 		String param2 = "";// request.getParameter("param2");
 boolean isMultipart = true;
 boolean isSaved = true;
-		List<FileItem> items = UpLoadTool.initUpload(request, response);
+List<FileItem> items =null;
 		FileItem fi = null;
 		int id;
 		if(request.getContentType()
 				.equals("application/x-www-form-urlencoded")){
 			isMultipart  = false;
 		}else {
+			 items = UpLoadTool.initUpload(request, response);
 			isMultipart  = true;
 		}
 		if (!isMultipart) {
@@ -135,7 +136,7 @@ boolean isSaved = true;
 				id = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class).insert(publish);
 				MyBATISSqlSessionFactory.getSession().commit();
-				id = publish.getpUser().getUserId();
+				id = publish.getpId();
 				if (isMultipart) {
 					  isSaved = UpLoadTool.savedFile(items, id,
 							  publish.getpUser().getUserId(), request);
@@ -164,7 +165,7 @@ boolean isSaved = true;
 				MyBATISSqlSessionFactory.getSession().commit();
 				
 				
-				id =publish.getpUser().getUserId();
+				id =publish.getpId();
 				if (isMultipart) {
 					  isSaved = UpLoadTool.savedFile(items, id,
 							  publish.getpUser().getUserId(), request);
