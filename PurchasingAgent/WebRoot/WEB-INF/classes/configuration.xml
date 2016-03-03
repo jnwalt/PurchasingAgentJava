@@ -25,6 +25,8 @@
 		<mapper resource="com/leetai/mapping/PublishMapper.xml" />
 		<mapper resource="com/leetai/mapping/AddressMapper.xml" />
 		<mapper resource="com/leetai/mapping/RegionMapper.xml" />
+		<mapper resource="com/leetai/mapping/BidMapper.xml" />
+		<mapper resource="com/leetai/mapping/OrderMapper.xml" />
 	</mappers>
 
 </configuration>

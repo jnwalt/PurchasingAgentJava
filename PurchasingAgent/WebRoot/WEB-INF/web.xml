@@ -65,6 +65,41 @@
     <servlet-name>UpLoadServlet</servlet-name>
     <servlet-class>com.leetai.action.UpLoadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalingServlet</servlet-name>
+    <servlet-class>com.leetai.action.SalingServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BidListServlet</servlet-name>
+    <servlet-class>com.leetai.action.BidListServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BidServlet</servlet-name>
+    <servlet-class>com.leetai.action.BidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PBidedServlet</servlet-name>
+    <servlet-class>com.leetai.action.PBidedServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MatchingServlet</servlet-name>
+    <servlet-class>com.leetai.action.MatchingServlet</servlet-class>
+  </servlet>
+
+
+
+
+
 
 
 
@@ -113,6 +148,26 @@
   <servlet-mapping>
     <servlet-name>UpLoadServlet</servlet-name>
     <url-pattern>/servlet/UpLoadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalingServlet</servlet-name>
+    <url-pattern>/servlet/SalingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BidListServlet</servlet-name>
+    <url-pattern>/servlet/BidListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BidServlet</servlet-name>
+    <url-pattern>/servlet/BidServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PBidedServlet</servlet-name>
+    <url-pattern>/servlet/PBidedServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MatchingServlet</servlet-name>
+    <url-pattern>/servlet/MatchingServlet</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

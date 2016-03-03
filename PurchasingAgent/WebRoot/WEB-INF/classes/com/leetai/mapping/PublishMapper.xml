@@ -2,168 +2,169 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.leetai.mapping.PublishMapper" >
   <resultMap id="BaseResultMap" type="com.leetai.modle.Publish" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="DOUBLE" />
-    <result column="img" property="img" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="add_time" property="addTime" jdbcType="DATE" />
-    <result column="public_flag" property="publicFlag" jdbcType="INTEGER" />
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_title" property="pTitle" jdbcType="VARCHAR" />
+    <result column="p_description" property="pDescription" jdbcType="VARCHAR" />
+    <result column="p_type" property="pType" jdbcType="VARCHAR" />
+    <result column="p_price" property="pPrice" jdbcType="DOUBLE" />
+    <result column="p_img" property="pImg" jdbcType="VARCHAR" />
+  <!--    <result column="p_user_id" property="pUserId" jdbcType="INTEGER" />-->
+    <result column="p_address" property="pAddress" jdbcType="VARCHAR" />
+    <result column="p_add_time" property="pAddTime" jdbcType="DATE" />
+    <result column="p_flag" property="pFlag" jdbcType="INTEGER" />
+ 
+    <association property="pUser" column="p_user_id"
+			javaType="com.leetai.modle.User" select="com.leetai.mapping.UserMapper.selectByPrimaryKey">
+		</association>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, description, type, price, img, user_id, address, add_time, public_flag
+    p_id, p_title, p_description, p_type, p_price, p_img, p_user_id, p_address, p_add_time, 
+    p_flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from p_publish
-    where id = #{id,jdbcType=INTEGER}
+    select t.*,d.*
+    <!--     <include refid="Base_Column_List" />-->
+    from p_publish t left join sys_user d on t.p_user_id = d.user_id
+    where t.p_id = #{pId,jdbcType=INTEGER}
   </select>
-  
-   
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from p_publish
-    where id = #{id,jdbcType=INTEGER}
+    where p_id = #{pId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.leetai.modle.Publish" >
-  
-  	<selectKey resultType="java.lang.Integer" order="AFTER"
-			keyProperty="id">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		
-    insert into p_publish (id, title, description, 
-      type, price, img, user_id, 
-      address, add_time, public_flag
-      )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{img,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{address,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, #{publicFlag,jdbcType=INTEGER}
-      )
+    insert into p_publish (p_id, p_title, p_description, 
+      p_type, p_price, p_img, 
+      p_user_id, p_address, p_add_time, 
+      p_flag)
+    values (#{pId,jdbcType=INTEGER}, #{pTitle,jdbcType=VARCHAR}, #{pDescription,jdbcType=VARCHAR}, 
+      #{pType,jdbcType=VARCHAR}, #{pPrice,jdbcType=DOUBLE}, #{pImg,jdbcType=VARCHAR}, 
+      #{pUserId,jdbcType=INTEGER}, #{pAddress,jdbcType=VARCHAR}, #{pAddTime,jdbcType=DATE}, 
+      #{pFlag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.leetai.modle.Publish" >
     insert into p_publish
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="pId != null" >
+        p_id,
       </if>
-      <if test="title != null" >
-        title,
+      <if test="pTitle != null" >
+        p_title,
       </if>
-      <if test="description != null" >
-        description,
+      <if test="pDescription != null" >
+        p_description,
       </if>
-      <if test="type != null" >
-        type,
+      <if test="pType != null" >
+        p_type,
       </if>
-      <if test="price != null" >
-        price,
+      <if test="pPrice != null" >
+        p_price,
       </if>
-      <if test="img != null" >
-        img,
+      <if test="pImg != null" >
+        p_img,
       </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="pUserId != null" >
+        p_user_id,
       </if>
-      <if test="address != null" >
-        address,
+      <if test="pAddress != null" >
+        p_address,
       </if>
-      <if test="addTime != null" >
-        add_time,
+      <if test="pAddTime != null" >
+        p_add_time,
       </if>
-      <if test="publicFlag != null" >
-        public_flag,
+      <if test="pFlag != null" >
+        p_flag,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
       </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
+      <if test="pTitle != null" >
+        #{pTitle,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="pDescription != null" >
+        #{pDescription,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+      <if test="pType != null" >
+        #{pType,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
-        #{price,jdbcType=DOUBLE},
+      <if test="pPrice != null" >
+        #{pPrice,jdbcType=DOUBLE},
       </if>
-      <if test="img != null" >
-        #{img,jdbcType=VARCHAR},
+      <if test="pImg != null" >
+        #{pImg,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="pUserId != null" >
+        #{pUserId,jdbcType=INTEGER},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="pAddress != null" >
+        #{pAddress,jdbcType=VARCHAR},
       </if>
-      <if test="addTime != null" >
-        #{addTime,jdbcType=DATE},
+      <if test="pAddTime != null" >
+        #{pAddTime,jdbcType=DATE},
       </if>
-      <if test="publicFlag != null" >
-        #{publicFlag,jdbcType=INTEGER},
+      <if test="pFlag != null" >
+        #{pFlag,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Publish" >
     update p_publish
     <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
+      <if test="pTitle != null" >
+        p_title = #{pTitle,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="pDescription != null" >
+        p_description = #{pDescription,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=DOUBLE},
+      <if test="pPrice != null" >
+        p_price = #{pPrice,jdbcType=DOUBLE},
       </if>
-      <if test="img != null" >
-        img = #{img,jdbcType=VARCHAR},
+      <if test="pImg != null" >
+        p_img = #{pImg,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="pUserId != null" >
+        p_user_id = #{pUserId,jdbcType=INTEGER},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="pAddress != null" >
+        p_address = #{pAddress,jdbcType=VARCHAR},
       </if>
-      <if test="addTime != null" >
-        add_time = #{addTime,jdbcType=DATE},
+      <if test="pAddTime != null" >
+        p_add_time = #{pAddTime,jdbcType=DATE},
       </if>
-      <if test="publicFlag != null" >
-        public_flag = #{publicFlag,jdbcType=INTEGER},
+      <if test="pFlag != null" >
+        p_flag = #{pFlag,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where p_id = #{pId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.leetai.modle.Publish" >
     update p_publish
-    set title = #{title,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DOUBLE},
-      img = #{img,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=DATE},
-      public_flag = #{publicFlag,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    set p_title = #{pTitle,jdbcType=VARCHAR},
+      p_description = #{pDescription,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=VARCHAR},
+      p_price = #{pPrice,jdbcType=DOUBLE},
+      p_img = #{pImg,jdbcType=VARCHAR},
+      p_user_id = #{pUserId,jdbcType=INTEGER},
+      p_address = #{pAddress,jdbcType=VARCHAR},
+      p_add_time = #{pAddTime,jdbcType=DATE},
+      p_flag = #{pFlag,jdbcType=INTEGER}
+    where p_id = #{pId,jdbcType=INTEGER}
   </update>
   
   
-   <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   <select id="findAllByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from p_publish
-    where user_id = #{userId,jdbcType=INTEGER}  order by id desc 
+    where p_user_id = #{pUserId,jdbcType=INTEGER}  order by p_id desc 
+  </select>
+    <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_publish  order by p_id desc 
   </select>
 </mapper>

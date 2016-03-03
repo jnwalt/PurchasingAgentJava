@@ -45,10 +45,11 @@ public class UpLoadTool {
 	}
 
 
-	public static String savedFile(List<FileItem> items , int id,int userId) {
+	public static boolean savedFile(List<FileItem> items , int id,int userId,HttpServletRequest request) {
 		
-
-		String path = "D:\\paPic\\ps\\" + id+"\\"+userId;
+		String path = request.getSession().getServletContext().getRealPath("/");
+		System.out.println("path=" + path);
+		path += "\\Pic\\ps\\p\\" + id+"\\"+userId;
 		File file = new File(path);
 		if  (!file.exists()  && !file.isDirectory())      
 		{       
@@ -60,7 +61,7 @@ public class UpLoadTool {
 			
 			if (!fi.isFormField()) {
 				String tempname= fi.getName();
-				String fileType = fi.getName().substring(fi.getName().indexOf("."),fi.getName().length());
+				String fileType = fi.getName().substring(fi.getName().indexOf(".")+1,fi.getName().length());
 				String name =   fi.getFieldName()+"."+fileType;
 				if (name != null) {
 					File savedFile = new File(path, name);
@@ -69,12 +70,13 @@ public class UpLoadTool {
 					} catch (Exception e) {
 						e.printStackTrace();
 						System.out.println("UpLoadTool.savedFile±£¥Ê ß∞‹");
+						return false;
 					}
 				}
 			}
 		}
 		
-		return path;
+		return true;
 		
 	}
 }

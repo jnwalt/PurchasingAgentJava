@@ -5,18 +5,23 @@ import java.util.List;
 import com.leetai.modle.Publish;
 
 public interface PublishMapper {
-	int deleteByPrimaryKey(Integer id);
+	
+	
+    int deleteByPrimaryKey(Integer pId);
 
-	int insert(Publish record);
+    int insert(Publish record);
 
-	int insertSelective(Publish record);
+    int insertSelective(Publish record);
 
-	Publish selectByPrimaryKey(Integer id);
+    Publish selectByPrimaryKey(Integer pId);
 
-	int updateByPrimaryKeySelective(Publish record);
+    int updateByPrimaryKeySelective(Publish record);
 
-	int updateByPrimaryKey(Publish record);
+    int updateByPrimaryKey(Publish record);
+    
+     
 	
 	/////////////////////
-	List<Publish> findAll(Integer id);
+	List<Publish> findAllByUserId(Integer pId);
+	List<Publish> findAll();
 }

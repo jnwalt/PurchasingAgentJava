@@ -1,13 +1,9 @@
 package com.leetai.action;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,7 +54,8 @@ public class PublishServlet extends HttpServlet {
 				result = a + "";
 			} else if (param1.equals("modify")) {
 				publish = gson.fromJson(param2, Publish.class);
-				//System.out.println("publish.getTitle()=" + publish.getTitle());
+				// System.out.println("publish.getTitle()=" +
+				// publish.getTitle());
 				int a = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class)
 						.updateByPrimaryKey(publish);
@@ -88,61 +85,102 @@ public class PublishServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Publish publish = new Publish();
+//		System.out.println("request.getContentType()="
+//				+ request.getContentType());
 		Gson gson = new Gson();
 		String result = "";
 		String param1 = ""; // request.getParameter("param1");
 		String param2 = "";// request.getParameter("param2");
-
+boolean isMultipart = true;
+boolean isSaved = true;
 		List<FileItem> items = UpLoadTool.initUpload(request, response);
 		FileItem fi = null;
 		int id;
-		try {
-			Iterator<FileItem> i = items.iterator();
-			while (i.hasNext()) {
-				fi = (FileItem) i.next();
-				// 判断是字段还是文件
-				if (fi.isFormField()) {
-					if (fi.getFieldName().equals("param1")) {
-						param1 = fi.getString();
-					} else if (fi.getFieldName().equals("param2")) {
-						param2 = fi.getString();
+		if(request.getContentType()
+				.equals("application/x-www-form-urlencoded")){
+			isMultipart  = false;
+		}else {
+			isMultipart  = true;
+		}
+		if (!isMultipart) {
+			request.setCharacterEncoding("utf-8");//post方法直接utf-8 不用再转字符
+			param1 = request.getParameter("param1");
+			param2 = request.getParameter("param2");
+		} else {
+			try {
+				Iterator<FileItem> i = items.iterator();
+				while (i.hasNext()) {
+					fi = (FileItem) i.next();
+					// 判断是字段还是文件
+					if (fi.isFormField()) {
+						if (fi.getFieldName().equals("param1")) {
+							param1 = fi.getString();
+						} else if (fi.getFieldName().equals("param2")) {
+							param2 = fi.getString();
+						}
 					}
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-			System.out.println("param1=" + param1);
-			System.out.println("param2=" + param2);
-
+		}
+		
+		
+		System.out.println("param1=" + param1);
+		System.out.println("param2=" + param2);
+		try {
 			if (param1.equals("add")) {
 
 				publish = gson.fromJson(param2, Publish.class);
 				id = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class).insert(publish);
 				MyBATISSqlSessionFactory.getSession().commit();
-
-				String path = UpLoadTool.savedFile(items, id,
-						publish.getUserId());
-
+				id = publish.getpUser().getUserId();
+				if (isMultipart) {
+					  isSaved = UpLoadTool.savedFile(items, id,
+							  publish.getpUser().getUserId(), request);
+				}
 				// publish.setId(id);
 				// publish.setImg(path);
 				// id = MyBATISSqlSessionFactory.getSession()
 				// .getMapper(PublishMapper.class)
 				// .updateByPrimaryKey(publish);
 				// MyBATISSqlSessionFactory.getSession().commit();
-				result = id + "";
-			} else if (param1.equals("delete")) {
-				id = MyBATISSqlSessionFactory.getSession()
-						.getMapper(PublishMapper.class)
-						.deleteByPrimaryKey(Integer.parseInt(param2));
-				MyBATISSqlSessionFactory.getSession().commit();
-				result = id + "";
-			} else if (param1.equals("modify")) {
+				if (isSaved) {
+					if (id != 0) {
+						result = "success";
+					} else {
+						result = "数据保存失败";
+					}
+				} else {
+					result = "图片上传失败！";
+				}
+
+			}   else if (param1.equals("modify")) {
 				publish = gson.fromJson(param2, Publish.class);
 				id = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class)
 						.updateByPrimaryKey(publish);
 				MyBATISSqlSessionFactory.getSession().commit();
-				result = id + "";
+				
+				
+				id =publish.getpUser().getUserId();
+				if (isMultipart) {
+					  isSaved = UpLoadTool.savedFile(items, id,
+							  publish.getpUser().getUserId(), request);
+				}
+				 
+				if (isSaved) {
+					if (id != 0) {
+						result = "success";
+					} else {
+						result = "数据保存失败";
+					}
+				} else {
+					result = "图片上传失败！";
+				}
+				
+				 
 			} else {
 				System.out.println("PublishServlet参数错误无法解析;");
 				return;

@@ -48,7 +48,7 @@ public class PublishListServlet extends HttpServlet {
 
 			list = MyBATISSqlSessionFactory.getSession()
 					.getMapper(PublishMapper.class)
-					.findAll(Integer.parseInt(param1));
+					.findAllByUserId(Integer.parseInt(param1));
 			result = gson.toJson(list);
 			// for (int i = 0; i < list.size(); i++) {
 			// //System.out.println("list.get(i).getTitle()="
@@ -104,7 +104,7 @@ public class PublishListServlet extends HttpServlet {
 
 			list = MyBATISSqlSessionFactory.getSession()
 					.getMapper(PublishMapper.class)
-					.findAll(Integer.parseInt(param1));
+					.findAllByUserId(Integer.parseInt(param1));
 			result = gson.toJson(list);
 			// for (int i = 0; i < list.size(); i++) {
 			// //System.out.println("list.get(i).getTitle()="
