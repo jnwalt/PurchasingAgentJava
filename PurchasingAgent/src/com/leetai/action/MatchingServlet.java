@@ -54,10 +54,9 @@ public class MatchingServlet extends HttpServlet {
 		try {
 			Bid bid = MyBATISSqlSessionFactory.getSession()
 					.getMapper(BidMapper.class).selectByPrimaryKey(s_id);
-			Publish publish = MyBATISSqlSessionFactory.getSession()
-					.getMapper(PublishMapper.class).selectByPrimaryKey(p_id);
+ 
 
-			order = getOrder(publish, bid);
+			order = getOrder( bid);
 
 			ps_id = MyBATISSqlSessionFactory.getSession()
 					.getMapper(OrderMapper.class).insert(order);
@@ -85,11 +84,11 @@ public class MatchingServlet extends HttpServlet {
 		out.close();
 	}
 
-	private Order getOrder(Publish publish, Bid bid) {
+	private Order getOrder(Bid bid) {
 		Order orderNew = new Order();
 		Date date = new Date();
 //		orderNew.setpId(publish.getId());
-//		orderNew.setsId(bid.getsId());
+ 	orderNew.setBid(bid);
 
 		orderNew.setPsAddTime(date);
 		orderNew.setPsStatus(0);

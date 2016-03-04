@@ -42,8 +42,8 @@
 		s_address, p_id, s_add_time
 		)
 		values (#{sId,jdbcType=INTEGER}, #{sPrice,jdbcType=DOUBLE},
-		#{sUserId,jdbcType=INTEGER},
-		#{sAddress,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{sAddTime,jdbcType=DATE}
+		#{sUser.userId,jdbcType=INTEGER},
+		#{sAddress,jdbcType=VARCHAR}, #{publish.pId,jdbcType=INTEGER}, #{sAddTime,jdbcType=DATE}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.leetai.modle.Bid">

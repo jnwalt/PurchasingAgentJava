@@ -110,7 +110,7 @@ public class LoginServlet extends HttpServlet {
 		// result = "faile";
 		// }
 
-		if (user.getUsername() != null) {
+		if (user  != null) {
 			if (user.getPassword().toString().equals(param2)) {
 				result = user.getUserId()+"";
 			} else {

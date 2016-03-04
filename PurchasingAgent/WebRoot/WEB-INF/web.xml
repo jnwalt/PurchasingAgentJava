@@ -1,100 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name></display-name>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.leetai.action.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>com.leetai.action.TestServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>RegistServlet</servlet-name>
-    <servlet-class>com.leetai.action.RegistServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>VersionServlet</servlet-name>
-    <servlet-class>com.leetai.action.VersionServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DownLoad</servlet-name>
-    <servlet-class>com.leetai.tools.DownLoad</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>PublishServlet</servlet-name>
-    <servlet-class>com.leetai.action.PublishServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>PublishListServlet</servlet-name>
-    <servlet-class>com.leetai.action.PublishListServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AddressServlet</servlet-name>
-    <servlet-class>com.leetai.action.AddressServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>RegionServlet</servlet-name>
-    <servlet-class>com.leetai.action.RegionServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>UpLoadServlet</servlet-name>
-    <servlet-class>com.leetai.action.UpLoadServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>SalingServlet</servlet-name>
-    <servlet-class>com.leetai.action.SalingServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>BidListServlet</servlet-name>
-    <servlet-class>com.leetai.action.BidListServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>BidServlet</servlet-name>
-    <servlet-class>com.leetai.action.BidServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>PBidedServlet</servlet-name>
-    <servlet-class>com.leetai.action.PBidedServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>MatchingServlet</servlet-name>
-    <servlet-class>com.leetai.action.MatchingServlet</servlet-class>
-  </servlet>
+	<display-name></display-name>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.leetai.action.LoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>com.leetai.action.TestServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>RegistServlet</servlet-name>
+		<servlet-class>com.leetai.action.RegistServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>VersionServlet</servlet-name>
+		<servlet-class>com.leetai.action.VersionServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>DownLoad</servlet-name>
+		<servlet-class>com.leetai.tools.DownLoad</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>PublishServlet</servlet-name>
+		<servlet-class>com.leetai.action.PublishServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>PublishListServlet</servlet-name>
+		<servlet-class>com.leetai.action.PublishListServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>AddressServlet</servlet-name>
+		<servlet-class>com.leetai.action.AddressServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>RegionServlet</servlet-name>
+		<servlet-class>com.leetai.action.RegionServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>UpLoadServlet</servlet-name>
+		<servlet-class>com.leetai.action.UpLoadServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>SalingServlet</servlet-name>
+		<servlet-class>com.leetai.action.SalingServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>BidListServlet</servlet-name>
+		<servlet-class>com.leetai.action.BidListServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>BidServlet</servlet-name>
+		<servlet-class>com.leetai.action.BidServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>PBidedServlet</servlet-name>
+		<servlet-class>com.leetai.action.PBidedServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>MatchingServlet</servlet-name>
+		<servlet-class>com.leetai.action.MatchingServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>UserinfoServlet</servlet-name>
+		<servlet-class>com.leetai.action.UserinfoServlet</servlet-class>
+	</servlet>
 
 
 
@@ -105,71 +110,74 @@
 
 
 
+	<servlet-mapping>
+		<servlet-name>DownLoad</servlet-name>
+		<url-pattern>/servlet/DownLoad</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/servlet/LoginServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/servlet/TestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegistServlet</servlet-name>
+		<url-pattern>/servlet/RegistServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>VersionServlet</servlet-name>
+		<url-pattern>/servlet/VersionServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PublishServlet</servlet-name>
+		<url-pattern>/servlet/PublishServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PublishListServlet</servlet-name>
+		<url-pattern>/servlet/PublishListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddressServlet</servlet-name>
+		<url-pattern>/servlet/AddressServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegionServlet</servlet-name>
+		<url-pattern>/servlet/RegionServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpLoadServlet</servlet-name>
+		<url-pattern>/servlet/UpLoadServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SalingServlet</servlet-name>
+		<url-pattern>/servlet/SalingServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BidListServlet</servlet-name>
+		<url-pattern>/servlet/BidListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BidServlet</servlet-name>
+		<url-pattern>/servlet/BidServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PBidedServlet</servlet-name>
+		<url-pattern>/servlet/PBidedServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MatchingServlet</servlet-name>
+		<url-pattern>/servlet/MatchingServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserinfoServlet</servlet-name>
+		<url-pattern>/servlet/UserinfoServlet</url-pattern>
+	</servlet-mapping>
 
 
 
-
-  <servlet-mapping>
-    <servlet-name>DownLoad</servlet-name>
-    <url-pattern>/servlet/DownLoad</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/servlet/LoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/servlet/TestServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegistServlet</servlet-name>
-    <url-pattern>/servlet/RegistServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>VersionServlet</servlet-name>
-    <url-pattern>/servlet/VersionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>PublishServlet</servlet-name>
-    <url-pattern>/servlet/PublishServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>PublishListServlet</servlet-name>
-    <url-pattern>/servlet/PublishListServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AddressServlet</servlet-name>
-    <url-pattern>/servlet/AddressServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegionServlet</servlet-name>
-    <url-pattern>/servlet/RegionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpLoadServlet</servlet-name>
-    <url-pattern>/servlet/UpLoadServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SalingServlet</servlet-name>
-    <url-pattern>/servlet/SalingServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BidListServlet</servlet-name>
-    <url-pattern>/servlet/BidListServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BidServlet</servlet-name>
-    <url-pattern>/servlet/BidServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>PBidedServlet</servlet-name>
-    <url-pattern>/servlet/PBidedServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>MatchingServlet</servlet-name>
-    <url-pattern>/servlet/MatchingServlet</url-pattern>
-  </servlet-mapping>	
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
