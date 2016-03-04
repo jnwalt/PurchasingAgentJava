@@ -1,5 +1,7 @@
 package com.leetai.mapping;
 
+import java.util.List;
+
 import com.leetai.modle.Order;
 
 public interface OrderMapper {
@@ -14,4 +16,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+    
+    ////////////////
+    List<Order> selectAllByUserId(Integer userId);
 }

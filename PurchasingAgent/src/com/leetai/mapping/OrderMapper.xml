@@ -1,100 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leetai.mapping.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.leetai.modle.Order" >
-    <id column="ps_id" property="psId" jdbcType="INTEGER" />
-  <!--   <result column="s_id" property="sId" jdbcType="INTEGER" />--> 
-    <result column="ps_add_time" property="psAddTime" jdbcType="DATE" />
-    <result column="ps_status" property="psStatus" jdbcType="INTEGER" />
-    <result column="ps_express_no" property="psExpressNo" jdbcType="VARCHAR" />
-    	<association property="bid" column="s_id"
-			javaType="com.leetai.modle.Bid" select="com.leetai.mapping.BidMapper.selectByPrimaryKey">
+<mapper namespace="com.leetai.mapping.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.leetai.modle.Order">
+		<id column="ps_id" property="psId" jdbcType="INTEGER" />
+		<!-- <result column="s_id" property="sId" jdbcType="INTEGER" /> -->
+		<result column="ps_add_time" property="psAddTime" jdbcType="DATE" />
+		<result column="ps_status" property="psStatus" jdbcType="INTEGER" />
+		<result column="ps_express_no" property="psExpressNo" jdbcType="VARCHAR" />
+		<association property="bid" column="s_id" javaType="com.leetai.modle.Bid"
+			select="com.leetai.mapping.BidMapper.selectByPrimaryKey">
 		</association>
-  </resultMap>
-  <sql id="Base_Column_List" >
-    ps_id, s_id, ps_add_time, ps_status, ps_express_no
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select t.*,d.*
-  <!--   <include refid="Base_Column_List" />--> 
-    from ps_order t left join s_bid d on t.s_id = d.s_id
-    where t.ps_id = #{psId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from ps_order
-    where ps_id = #{psId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.leetai.modle.Order" >
-  <selectKey resultType="java.lang.Integer" order="AFTER"
+	</resultMap>
+	<sql id="Base_Column_List">
+		ps_id, s_id, ps_add_time, ps_status, ps_express_no
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select t.*,d.*
+		<!-- <include refid="Base_Column_List" /> -->
+		from ps_order t left join s_bid d on t.s_id = d.s_id
+		where t.ps_id = #{psId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ps_order
+		where ps_id = #{psId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.leetai.modle.Order">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
 			keyProperty="psId">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-    insert into ps_order (ps_id, s_id, ps_add_time, 
-      ps_status, ps_express_no)
-    values (#{psId,jdbcType=INTEGER}, #{bid.sId,jdbcType=INTEGER}, #{psAddTime,jdbcType=DATE}, 
-      #{psStatus,jdbcType=INTEGER}, #{psExpressNo,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.leetai.modle.Order" >
-    insert into ps_order
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="psId != null" >
-        ps_id,
-      </if>
-      <if test="sId != null" >
-        s_id,
-      </if>
-      <if test="psAddTime != null" >
-        ps_add_time,
-      </if>
-      <if test="psStatus != null" >
-        ps_status,
-      </if>
-      <if test="psExpressNo != null" >
-        ps_express_no,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="psId != null" >
-        #{psId,jdbcType=INTEGER},
-      </if>
-      <if test="sId != null" >
-        #{sId,jdbcType=INTEGER},
-      </if>
-      <if test="psAddTime != null" >
-        #{psAddTime,jdbcType=DATE},
-      </if>
-      <if test="psStatus != null" >
-        #{psStatus,jdbcType=INTEGER},
-      </if>
-      <if test="psExpressNo != null" >
-        #{psExpressNo,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Order" >
-    update ps_order
-    <set >
-      <if test="sId != null" >
-        s_id = #{sId,jdbcType=INTEGER},
-      </if>
-      <if test="psAddTime != null" >
-        ps_add_time = #{psAddTime,jdbcType=DATE},
-      </if>
-      <if test="psStatus != null" >
-        ps_status = #{psStatus,jdbcType=INTEGER},
-      </if>
-      <if test="psExpressNo != null" >
-        ps_express_no = #{psExpressNo,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ps_id = #{psId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.leetai.modle.Order" >
-    update ps_order
-    set s_id = #{sId,jdbcType=INTEGER},
-      ps_add_time = #{psAddTime,jdbcType=DATE},
-      ps_status = #{psStatus,jdbcType=INTEGER},
-      ps_express_no = #{psExpressNo,jdbcType=VARCHAR}
-    where ps_id = #{psId,jdbcType=INTEGER}
-  </update>
+		insert into ps_order (ps_id, s_id, ps_add_time,
+		ps_status, ps_express_no)
+		values (#{psId,jdbcType=INTEGER}, #{bid.sId,jdbcType=INTEGER},
+		#{psAddTime,jdbcType=DATE},
+		#{psStatus,jdbcType=INTEGER}, #{psExpressNo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.leetai.modle.Order">
+		insert into ps_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="psId != null">
+				ps_id,
+			</if>
+			<if test="sId != null">
+				s_id,
+			</if>
+			<if test="psAddTime != null">
+				ps_add_time,
+			</if>
+			<if test="psStatus != null">
+				ps_status,
+			</if>
+			<if test="psExpressNo != null">
+				ps_express_no,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="psId != null">
+				#{psId,jdbcType=INTEGER},
+			</if>
+			<if test="sId != null">
+				#{sId,jdbcType=INTEGER},
+			</if>
+			<if test="psAddTime != null">
+				#{psAddTime,jdbcType=DATE},
+			</if>
+			<if test="psStatus != null">
+				#{psStatus,jdbcType=INTEGER},
+			</if>
+			<if test="psExpressNo != null">
+				#{psExpressNo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.leetai.modle.Order">
+		update ps_order
+		<set>
+			<if test="sId != null">
+				s_id = #{sId,jdbcType=INTEGER},
+			</if>
+			<if test="psAddTime != null">
+				ps_add_time = #{psAddTime,jdbcType=DATE},
+			</if>
+			<if test="psStatus != null">
+				ps_status = #{psStatus,jdbcType=INTEGER},
+			</if>
+			<if test="psExpressNo != null">
+				ps_express_no = #{psExpressNo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ps_id = #{psId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.leetai.modle.Order">
+		update ps_order
+		set s_id = #{sId,jdbcType=INTEGER},
+		ps_add_time = #{psAddTime,jdbcType=DATE},
+		ps_status = #{psStatus,jdbcType=INTEGER},
+		ps_express_no = #{psExpressNo,jdbcType=VARCHAR}
+		where ps_id = #{psId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+	<select id="selectAllByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select t.*,d.*
+		from ps_order t left join s_bid d on t.s_id = d.s_id  
+		 left join p_publish a on d.p_id = a.p_id  
+		where a.p_user_id =  #{userId,jdbcType=INTEGER}
+	</select>
 </mapper>
