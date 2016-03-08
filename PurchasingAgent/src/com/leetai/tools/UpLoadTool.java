@@ -14,12 +14,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UpLoadTool {
 	public static List<FileItem> initUpload(HttpServletRequest request,
 			HttpServletResponse response) {
-		//String uploadPath = "D:\\temp"; // 上传文件的目录
-		 String tempPath = "D:\\temp"; // 临时文件目录
-		//String tempPath = "d:\\temp\\buffer\\"; // 临时文件目录
+		// String uploadPath = "D:\\temp"; // 上传文件的目录
+		String tempPath = "D:\\temp"; // 临时文件目录
+		// String tempPath = "d:\\temp\\buffer\\"; // 临时文件目录
 		File tempPathFile = new File(tempPath);
-		if  (!tempPathFile.exists()  && !tempPathFile.isDirectory())      
-		{       
+		if (!tempPathFile.exists() && !tempPathFile.isDirectory()) {
 			tempPathFile.mkdir();
 		}
 		// 建工厂
@@ -44,25 +43,25 @@ public class UpLoadTool {
 		return items;
 	}
 
+	public static boolean savedFile(List<FileItem> items, int id, int userId,
+			HttpServletRequest request) {
 
-	public static boolean savedFile(List<FileItem> items , int id,int userId,HttpServletRequest request) {
-		
 		String path = request.getSession().getServletContext().getRealPath("/");
 		System.out.println("path=" + path);
-		path += "\\Pic\\ps\\p\\" + id+"\\"+userId;
+		path += "\\Pic\\ps\\p\\" + id + "\\" + userId;
 		File file = new File(path);
-		if  (!file.exists()  && !file.isDirectory())      
-		{       
+		if (!file.exists() && !file.isDirectory()) {
 			file.mkdirs();
 		}
-		
-		for (int i = 0; i < items.size();i++) {
+
+		for (int i = 0; i < items.size(); i++) {
 			FileItem fi = items.get(i);
-			
+
 			if (!fi.isFormField()) {
-				String tempname= fi.getName();
-				String fileType = fi.getName().substring(fi.getName().indexOf(".")+1,fi.getName().length());
-				String name =   fi.getFieldName()+"."+fileType;
+				String tempname = fi.getName();
+				String fileType = fi.getName().substring(
+						fi.getName().indexOf(".") + 1, fi.getName().length());
+				String name = fi.getFieldName() + "." + fileType;
 				if (name != null) {
 					File savedFile = new File(path, name);
 					try {
@@ -75,8 +74,44 @@ public class UpLoadTool {
 				}
 			}
 		}
-		
+
 		return true;
-		
+
+	}
+
+	public static boolean savedUserHead(List<FileItem> items,
+			HttpServletRequest request) {
+
+		String path = request.getSession().getServletContext().getRealPath("/");
+		System.out.println("path=" + path);
+		path += "\\Pic\\user";
+		File file = new File(path);
+		if (!file.exists() && !file.isDirectory()) {
+			file.mkdirs();
+		}
+
+		for (int i = 0; i < items.size(); i++) {
+			FileItem fi = items.get(i);
+
+			if (!fi.isFormField()) {
+				String tempname = fi.getName();
+				String fileType = fi.getName().substring(
+						fi.getName().indexOf(".") + 1, fi.getName().length());
+				String name = fi.getFieldName() + "." + fileType;
+				if (name != null) {
+					File savedFile = new File(path, name);
+					try {
+						fi.write(savedFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("UpLoadTool.savedFile保存失败");
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+
 	}
 }

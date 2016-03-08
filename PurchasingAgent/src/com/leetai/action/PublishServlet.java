@@ -85,26 +85,26 @@ public class PublishServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Publish publish = new Publish();
-//		System.out.println("request.getContentType()="
-//				+ request.getContentType());
+		// System.out.println("request.getContentType()="
+		// + request.getContentType());
 		Gson gson = new Gson();
 		String result = "";
 		String param1 = ""; // request.getParameter("param1");
 		String param2 = "";// request.getParameter("param2");
-boolean isMultipart = true;
-boolean isSaved = true;
-List<FileItem> items =null;
+		boolean isMultipart = true;
+		boolean isSaved = true;
+		List<FileItem> items = null;
 		FileItem fi = null;
 		int id;
-		if(request.getContentType()
-				.equals("application/x-www-form-urlencoded")){
-			isMultipart  = false;
-		}else {
-			 items = UpLoadTool.initUpload(request, response);
-			isMultipart  = true;
+		if (request.getContentType()
+				.equals("application/x-www-form-urlencoded")) {
+			isMultipart = false;
+		} else {
+			items = UpLoadTool.initUpload(request, response);
+			isMultipart = true;
 		}
 		if (!isMultipart) {
-			request.setCharacterEncoding("utf-8");//post方法直接utf-8 不用再转字符
+			request.setCharacterEncoding("utf-8");// post方法直接utf-8 不用再转字符
 			param1 = request.getParameter("param1");
 			param2 = request.getParameter("param2");
 		} else {
@@ -125,8 +125,7 @@ List<FileItem> items =null;
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		System.out.println("param1=" + param1);
 		System.out.println("param2=" + param2);
 		try {
@@ -138,8 +137,8 @@ List<FileItem> items =null;
 				MyBATISSqlSessionFactory.getSession().commit();
 				id = publish.getpId();
 				if (isMultipart) {
-					  isSaved = UpLoadTool.savedFile(items, id,
-							  publish.getpUser().getUserId(), request);
+					isSaved = UpLoadTool.savedFile(items, id, publish
+							.getpUser().getUserId(), request);
 				}
 				// publish.setId(id);
 				// publish.setImg(path);
@@ -157,20 +156,19 @@ List<FileItem> items =null;
 					result = "图片上传失败！";
 				}
 
-			}   else if (param1.equals("modify")) {
+			} else if (param1.equals("modify")) {
 				publish = gson.fromJson(param2, Publish.class);
 				id = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class)
 						.updateByPrimaryKey(publish);
 				MyBATISSqlSessionFactory.getSession().commit();
-				
-				
-				id =publish.getpId();
+
+				id = publish.getpId();
 				if (isMultipart) {
-					  isSaved = UpLoadTool.savedFile(items, id,
-							  publish.getpUser().getUserId(), request);
+					isSaved = UpLoadTool.savedFile(items, id, publish
+							.getpUser().getUserId(), request);
 				}
-				 
+
 				if (isSaved) {
 					if (id != 0) {
 						result = "success";
@@ -180,8 +178,7 @@ List<FileItem> items =null;
 				} else {
 					result = "图片上传失败！";
 				}
-				
-				 
+
 			} else {
 				System.out.println("PublishServlet参数错误无法解析;");
 				return;
