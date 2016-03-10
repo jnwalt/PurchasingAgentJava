@@ -24,4 +24,5 @@ public interface PublishMapper {
 	/////////////////////
  	List<Publish> findAllByUserId(Integer pUesrId);
  	List<Publish> findAll();
+ 	int updatePFlag(Integer pId);  
 }

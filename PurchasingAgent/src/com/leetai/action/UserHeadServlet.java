@@ -48,7 +48,7 @@ public class UserHeadServlet extends HttpServlet {
 			isMultipart = false;
 		} else {
 			items = UpLoadTool.initUpload(request, response);
-			isMultipart = false;
+			isMultipart = true;
 		}
 
 		if (!isMultipart) {
@@ -93,6 +93,13 @@ public class UserHeadServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		response.setCharacterEncoding("utf-8");
+		response.setHeader("Content-type", "text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(result);
+		out.flush();
+		out.close();
 	}
 
 }

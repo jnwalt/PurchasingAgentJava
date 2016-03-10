@@ -83,7 +83,7 @@ public class UpLoadTool {
 			HttpServletRequest request) {
 
 		String path = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("path=" + path);
+		//System.out.println("path=" + path);
 		path += "\\Pic\\user";
 		File file = new File(path);
 		if (!file.exists() && !file.isDirectory()) {

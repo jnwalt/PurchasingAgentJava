@@ -24,6 +24,7 @@ public class OrderServlet extends HttpServlet {
 
 		request.setCharacterEncoding("GB2312");
 		List<Order> list = new ArrayList<Order>();
+		Order order = new Order();
 		String param1 = request.getParameter("param1");
 		String param2 = request.getParameter("param2");
 		String result = "";
@@ -45,12 +46,12 @@ public class OrderServlet extends HttpServlet {
 
 		// System.out.println("publish.getOrder()" + publish.getOrder());
 		try {
-			if (param1.equals(Type.ACTION_TYPE_QUERY)) {
-				list = MyBATISSqlSessionFactory.getSession()
+			if (param1.equals(Type.ACTION_TYPE_QUERY_DETAIL)) {
+				order = MyBATISSqlSessionFactory.getSession()
 						.getMapper(OrderMapper.class)
-						.selectAllByUserId(Integer.parseInt(param2));
-				result = gson.toJson(list);
-				 System.out.println("OrderServlet:result="+result);
+						.selectBySId(Integer.parseInt(param2));
+				result = gson.toJson(order);
+				// System.out.println("OrderServlet:result="+result);
 				// for (int i = 0; i < list.size(); i++) {
 				// System.out.println("list.get(i).getTitle()="
 				// + list.get(i).getTitle());

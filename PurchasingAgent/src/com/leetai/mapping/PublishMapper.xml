@@ -168,7 +168,7 @@
   
     select t.*,d.* 
     from p_publish t left join sys_user d on t.p_user_id = d.user_id
-  where p_user_id = #{pUesrId,jdbcType=INTEGER}  order by p_id desc 
+  where t.p_user_id = #{pUser.userId,jdbcType=INTEGER}  and t.p_flag = 0 order by p_id desc 
   
     
   </select>
@@ -177,4 +177,11 @@
     <include refid="Base_Column_List" />
     from p_publish  order by p_id desc 
   </select> 
+  
+  
+	<update id="updatePFlag" parameterType="java.lang.Integer">
+		update p_publish
+		set p_flag = 1  
+		where p_id = #{pId,jdbcType=INTEGER}
+	</update>
 </mapper>

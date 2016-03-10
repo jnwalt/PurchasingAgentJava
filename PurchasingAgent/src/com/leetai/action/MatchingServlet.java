@@ -30,37 +30,33 @@ public class MatchingServlet extends HttpServlet {
 		List<Bid> list = new ArrayList<Bid>();
 		// request.setCharacterEncoding("utf-8");//post方法直接utf-8 不用再转字符
 		String param1 = request.getParameter("param1");
-		String param2 = request.getParameter("param2");
+		// String param2 = request.getParameter("param2");
 		String result = "";
 		if (param1 == null) {
 			param1 = "";
 		} else {
 			param1 = new String(param1.getBytes("iso8859-1"), "utf-8");
 		}
-
-		if (param2 == null) {
-			param2 = "";
-		} else {
-			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
-		}
-		// System.out.println("param1:" + param1);
+		  System.out.println("param1:" + param1);
 		// System.out.println("param2:" + param2);
-
-		p_id = Integer.parseInt(param1);
-		s_id = Integer.parseInt(param2);
+		s_id = Integer.parseInt(param1);
 		Gson gson = new Gson();
 
 		// System.out.println("publish.getAddress()" + publish.getAddress());
 		try {
 			Bid bid = MyBATISSqlSessionFactory.getSession()
 					.getMapper(BidMapper.class).selectByPrimaryKey(s_id);
- 
 
-			order = getOrder( bid);
+			order = getOrder(bid);
 
 			ps_id = MyBATISSqlSessionFactory.getSession()
 					.getMapper(OrderMapper.class).insert(order);
-
+///更新publish标志位
+			MyBATISSqlSessionFactory.getSession()
+			.getMapper(PublishMapper.class).updatePFlag(bid.getPublish().getpId());
+ 		
+			
+			
 			if (ps_id != 0) {
 				result = "success";
 			} else {
@@ -87,9 +83,8 @@ public class MatchingServlet extends HttpServlet {
 	private Order getOrder(Bid bid) {
 		Order orderNew = new Order();
 		Date date = new Date();
-//		orderNew.setpId(publish.getId());
- 	orderNew.setBid(bid);
-
+		// orderNew.setpId(publish.getId());
+		orderNew.setBid(bid);
 		orderNew.setPsAddTime(date);
 		orderNew.setPsStatus(0);
 

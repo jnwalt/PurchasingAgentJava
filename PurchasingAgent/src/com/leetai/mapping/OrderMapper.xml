@@ -108,4 +108,14 @@
 		 left join p_publish a on d.p_id = a.p_id  
 		where a.p_user_id =  #{userId,jdbcType=INTEGER}
 	</select>
+	<select id="selectBySId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select t.*,d.*
+		from ps_order t left join s_bid d on t.s_id = d.s_id  
+		 left join p_publish a on d.p_id = a.p_id  
+		where t.s_id =  #{sId,jdbcType=INTEGER}
+	</select>
+	
+	
+	
 </mapper>
