@@ -98,8 +98,8 @@ public class UserinfoServlet extends HttpServlet {
 		String result = "";//
 		String param1 = request.getParameter("param1").trim(); // 获取用户名
 		String param2 = request.getParameter("param2").trim(); // 获取操作类型
-		System.out.println(param1);
-		System.out.println(param2);
+//		System.out.println(param1);
+//		System.out.println(param2);
 		if (param1 == null) {
 			param1 = "123";
 		} else {
@@ -119,7 +119,7 @@ public class UserinfoServlet extends HttpServlet {
 				.getMapper(UserMapper.class).selectByUsername(param1);
 				// String param1 = request.getParameter("param1");
 				// String param2 = request.getParameter("param2");
-				System.out.println(user.getUsername());
+//				System.out.println(user.getUsername());
 				if (user.getUsername() != null) {
 					Gson gson = new Gson();
 					result = gson.toJson(user);
@@ -163,7 +163,7 @@ public class UserinfoServlet extends HttpServlet {
 			
 		}
 		
-		System.out.println(result);
+//		System.out.println(result);
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Content-type", "text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();

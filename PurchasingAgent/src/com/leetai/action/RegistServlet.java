@@ -20,8 +20,8 @@ public class RegistServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String param1 = request.getParameter("param1");
 		String param2 = request.getParameter("param2");
-		System.out.println("param1:" + param1);
-		System.out.println("param2:" + param2);
+//		System.out.println("param1:" + param1);
+//		System.out.println("param2:" + param2);
 		if (param1 == null) {
 			param1 = "";
 		} else {

@@ -39,8 +39,8 @@ public class PublishServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-		System.out.println("param1:" + param1);
-		System.out.println("param2:" + param2);
+//		System.out.println("param1:" + param1);
+//		System.out.println("param2:" + param2);
 
 		// System.out.println("publish.getAddress()" + publish.getAddress());
 		Gson gson = new Gson();
@@ -125,9 +125,9 @@ public class PublishServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		System.out.println("param1=" + param1);
-		System.out.println("param2=" + param2);
+//
+//		System.out.println("param1=" + param1);
+//		System.out.println("param2=" + param2);
 		try {
 			if (param1.equals("add")) {
 

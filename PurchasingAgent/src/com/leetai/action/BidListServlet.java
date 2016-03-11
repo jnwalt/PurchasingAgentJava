@@ -40,8 +40,8 @@ public class BidListServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-		 System.out.println("BidListServlet param1:" + param1);
-		 System.out.println("BidListServlet param2:" + param2);
+		 //System.out.println("BidListServlet param1:" + param1);
+		// System.out.println("BidListServlet param2:" + param2);
 
 		// System.out.println("publish.getAddress()" + publish.getAddress());
 		try {
@@ -49,7 +49,7 @@ public class BidListServlet extends HttpServlet {
 				list = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class).findAll();
 				result = gson.toJson(list);
-				System.out.println("list.size()="+list.size());
+				//System.out.println("list.size()="+list.size());
 				//System.out.println("BidListServlet:result=" + result);
 				// for (int i = 0; i < list.size(); i++) {
 				// System.out.println("list.get(i).getTitle()="

@@ -19,6 +19,6 @@ public interface OrderMapper {
 
 	// //////////////
 	List<Order> selectAllByUserId(Integer userId);
-
+	List<Order> selectAllByStatus(Integer userId,Integer status);
 	Order selectBySId(Integer sId);
 	 }

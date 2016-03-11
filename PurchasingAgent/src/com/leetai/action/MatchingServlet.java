@@ -37,7 +37,7 @@ public class MatchingServlet extends HttpServlet {
 		} else {
 			param1 = new String(param1.getBytes("iso8859-1"), "utf-8");
 		}
-		  System.out.println("param1:" + param1);
+		 // System.out.println("param1:" + param1);
 		// System.out.println("param2:" + param2);
 		s_id = Integer.parseInt(param1);
 		Gson gson = new Gson();
@@ -55,8 +55,6 @@ public class MatchingServlet extends HttpServlet {
 			MyBATISSqlSessionFactory.getSession()
 			.getMapper(PublishMapper.class).updatePFlag(bid.getPublish().getpId());
  		
-			
-			
 			if (ps_id != 0) {
 				result = "success";
 			} else {

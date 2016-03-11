@@ -44,8 +44,8 @@ public class BidServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String param1 = request.getParameter("param1");
 		String param2 = request.getParameter("param2");
-		System.out.println("param1:" + param1);
-		System.out.println("param2:" + param2);
+//		System.out.println("param1:" + param1);
+//		System.out.println("param2:" + param2);
 		if (param1 == null) {
 			param1 = "";
 		}
@@ -60,7 +60,7 @@ public class BidServlet extends HttpServlet {
 						.getMapper(BidMapper.class).insert(bid);
 				MyBATISSqlSessionFactory.getSession().commit();
 				id = bid.getsId();
-				System.out.println("id = bid.getBidId();" + id);
+				//System.out.println("id = bid.getBidId();" + id);
 				if (id != 0) {
 					result = "success";
 				} else {

@@ -1,8 +1,11 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.Gson;
-import com.leetai.mapping.BidMapper;
-import com.leetai.modle.Bid;
+import com.leetai.mapping.OrderMapper;
+import com.leetai.modle.Order;
 import com.leetai.tools.MyBATISSqlSessionFactory;
 
 public class Test {
@@ -17,13 +20,12 @@ public class Test {
 //				.getMapper(OrderMapper.class).selectByPrimaryKey(1);
 //		 System.out.println(order.getBid().getsUser().getPassword());
 //		 
-//		 
-		Bid bid = new Bid();
-		bid = MyBATISSqlSessionFactory.getSession()
- 			.getMapper(BidMapper.class).selectByPrimaryKey(1);
-		 System.out.println(gson.toJson(bid.getsUser()));
-//		 
-//		
+		List<Order> list = new ArrayList<Order>();
+		list = MyBATISSqlSessionFactory
+				.getSession()
+				.getMapper(OrderMapper.class)
+				.selectAllByStatus(11,0);	
+		System.out.println(gson.toJson(list));
 	}
  
 

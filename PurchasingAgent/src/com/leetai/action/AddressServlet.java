@@ -48,7 +48,7 @@ public class AddressServlet extends HttpServlet {
 						.getMapper(AddressMapper.class)
 						.findAll(Integer.parseInt(param2));
 				result = gson.toJson(list);
-				System.out.println("AddressServlet:result="+result);
+				//System.out.println("AddressServlet:result="+result);
 				// for (int i = 0; i < list.size(); i++) {
 				// System.out.println("list.get(i).getTitle()="
 				// + list.get(i).getTitle());

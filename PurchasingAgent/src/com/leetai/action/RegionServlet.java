@@ -50,7 +50,7 @@ public class RegionServlet extends HttpServlet {
 						.getMapper(RegionMapper.class)
 						.findAll(Double.parseDouble((param2)));
 				result = gson.toJson(list);
-				System.out.println("RegionServlet:result="+result);
+				//System.out.println("RegionServlet:result="+result);
 				 
 				MyBATISSqlSessionFactory.getSession().clearCache();
 			}  else {

@@ -25,6 +25,8 @@ public class User {
 
     private Integer level;
 
+    private Integer dealCount;
+
     public Integer getUserId() {
         return userId;
     }
@@ -111,5 +113,13 @@ public class User {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getDealCount() {
+        return dealCount;
+    }
+
+    public void setDealCount(Integer dealCount) {
+        this.dealCount = dealCount;
     }
 }

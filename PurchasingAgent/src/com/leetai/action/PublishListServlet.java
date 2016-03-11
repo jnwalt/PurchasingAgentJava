@@ -50,7 +50,7 @@ public class PublishListServlet extends HttpServlet {
 					.getMapper(PublishMapper.class)
 					.findAllByUserId(Integer.parseInt(param1));
 			result = gson.toJson(list);
-			System.out.println("result="+result);
+			//System.out.println("result="+result);
 			 //System.out.println("list.size()="+list.size());
 			// for (int i = 0; i < list.size(); i++) {
 			// //System.out.println("list.get(i).getTitle()="
@@ -76,7 +76,7 @@ public class PublishListServlet extends HttpServlet {
  
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost");
+		//System.out.println("doPost");
 		request.setCharacterEncoding("GB2312");
 
 		List<Publish> list = new ArrayList<Publish>();

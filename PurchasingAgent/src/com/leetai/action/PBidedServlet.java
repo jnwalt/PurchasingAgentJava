@@ -36,8 +36,8 @@ public class PBidedServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-		 System.out.println("PBidedServlet param1:" + param1);
-		 System.out.println("PBidedServlet param2:" + param2);
+//		 System.out.println("PBidedServlet param1:" + param1);
+//		 System.out.println("PBidedServlet param2:" + param2);
 
 		Gson gson = new Gson();
 
@@ -46,10 +46,10 @@ public class PBidedServlet extends HttpServlet {
 
 			list = MyBATISSqlSessionFactory.getSession()
 					.getMapper(BidMapper.class)
-					.findByPId(Integer.parseInt(param1));
+					.selectAllByPId((Integer.parseInt(param1)));
 			result = gson.toJson(list);
-			System.out.println("list.size()="+list.size());
-			System.out.println("result="+result);
+//			System.out.println("list.size()="+list.size());
+//			System.out.println("result="+result);
 			MyBATISSqlSessionFactory.getSession().clearCache();
 		} catch (Exception e) {
 			e.printStackTrace();

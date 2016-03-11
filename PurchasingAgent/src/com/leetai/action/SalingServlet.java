@@ -40,8 +40,8 @@ public class SalingServlet extends HttpServlet {
 		} else {
 			param2 = new String(param2.getBytes("iso8859-1"), "utf-8");
 		}
-		 System.out.println("param1:" + param1);
-		 System.out.println("param2:" + param2);
+//		 System.out.println("param1:" + param1);
+//		 System.out.println("param2:" + param2);
 
 		// System.out.println("publish.getAddress()" + publish.getAddress());
 		try {
@@ -49,7 +49,7 @@ public class SalingServlet extends HttpServlet {
 				list = MyBATISSqlSessionFactory.getSession()
 						.getMapper(PublishMapper.class).findAll();
 				result = gson.toJson(list);
-				System.out.println("SalingServlet:result=" + result);
+				//System.out.println("SalingServlet:result=" + result);
 				// for (int i = 0; i < list.size(); i++) {
 				// System.out.println("list.get(i).getTitle()="
 				// + list.get(i).getTitle());

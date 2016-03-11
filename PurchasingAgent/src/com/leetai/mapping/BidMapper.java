@@ -17,5 +17,8 @@ public interface BidMapper {
 
     int updateByPrimaryKey(Bid record);
     /////////////////////
-    List<Bid> findByPId(Integer pId);
+    List<Bid> selectAllByPId(Integer pId);
+    
+    Bid selectOneBySId(Integer sId);
+
 }
