@@ -21,6 +21,7 @@ public class UpLoadTool {
 		if (!tempPathFile.exists() && !tempPathFile.isDirectory()) {
 			tempPathFile.mkdir();
 		}
+		
 		// 建工厂
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		// 设参数
