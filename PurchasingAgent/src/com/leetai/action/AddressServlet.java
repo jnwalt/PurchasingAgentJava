@@ -59,7 +59,14 @@ public class AddressServlet extends HttpServlet {
 				address = gson.fromJson(param2, Address.class);
 				int a = MyBATISSqlSessionFactory.getSession()
 						.getMapper(AddressMapper.class).insert(address);
-				MyBATISSqlSessionFactory.getSession().commit();
+			    int addId = address.getId();
+				
+				
+				if(address.getDefaultadd()==1){
+					 int b = MyBATISSqlSessionFactory.getSession()
+							 .getMapper(AddressMapper.class).updateOtherUndefault(addId,address.getUserId());	
+				}
+				 MyBATISSqlSessionFactory.getSession().commit();
 				// System.out.println("publish.getId()=" + publish.getId());
 				result = address.getId() + "";
 			} else if (param1.equals("delete")) {
@@ -72,7 +79,13 @@ public class AddressServlet extends HttpServlet {
 				// System.out.println("address.getTitle()="+publish.getTitle());
 				 int a = MyBATISSqlSessionFactory.getSession()
 				 .getMapper(AddressMapper.class).updateByPrimaryKey(address);
+				
+				 if(address.getDefaultadd()==1){
+					 int b = MyBATISSqlSessionFactory.getSession()
+							 .getMapper(AddressMapper.class).updateOtherUndefault(address.getId(),address.getUserId());	
+				}
 				 MyBATISSqlSessionFactory.getSession().commit();
+				 
 				 result = a+"";
 			} else {
 				System.out.println("AddressServlet参数错误无法解析;");

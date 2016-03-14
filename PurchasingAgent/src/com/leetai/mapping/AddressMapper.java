@@ -19,5 +19,7 @@ public interface AddressMapper {
     
     ////////////
     List<Address>  findAll (Integer id);
+    
+    int updateOtherUndefault(Integer id,Integer userId);
 
 }

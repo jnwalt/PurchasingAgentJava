@@ -26,6 +26,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.leetai.modle.Address" >
+  
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
     insert into p_address (id, region, detail, 
       name, phone, code, 
       user_id, addtime, defaultadd
@@ -146,4 +151,11 @@
     from p_address
     where user_id = #{userId,jdbcType=INTEGER}  order by id desc 
   </select>
+  
+  
+   <update id="updateOtherUndefault"   >
+    update p_address
+    set    defaultadd = 0
+    where id != #{param1,jdbcType=INTEGER} and user_id =  #{param2,jdbcType=INTEGER}
+  </update>
 </mapper>
